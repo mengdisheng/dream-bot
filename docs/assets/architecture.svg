@@ -26,7 +26,7 @@
   <rect x="290" y="390" width="1110" height="357" rx="19" fill="#f1f4ee" stroke="#285847" stroke-width="1.6"/>
   <text x="455" y="365" class="small">Signed short-lived owner assertion</text><path d="M440 277V465" class="line"/>
   <path d="M1240 277V390" class="line"/><text x="1253" y="359" class="small">create / remove</text>
-  <text x="314" y="422" class="label" style="fill:#285847">AT MOST ONE TEMPORARY CONTAINER · 1 CPU / 2 GiB / 256 PIDS</text>
+  <text x="550" y="422" class="label" style="fill:#285847">AT MOST ONE TEMPORARY CONTAINER · 1 CPU / 2 GiB / 256 PIDS</text>
   <rect x="330" y="465" width="220" height="200" rx="14" class="box"/>
   <text x="350" y="497" class="heading">Runtime API</text><text x="350" y="523" class="uid">UID 31001</text><text x="350" y="554" class="body">SQLite + encrypted keys</text><text x="350" y="579" class="body">Approvals + file grants</text><text x="350" y="604" class="body">Model adapters + audit</text><text x="350" y="640" class="small">Sole online data owner</text>
   <rect x="600" y="465" width="215" height="116" rx="14" class="box"/>

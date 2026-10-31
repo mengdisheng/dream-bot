@@ -1,0 +1,31 @@
+[Unit]
+Description=Personal Bot loopback HTTPS test entry
+Requires=personal-bot-gateway.service
+PartOf=personal-bot-gateway.service
+After=personal-bot-gateway.service
+
+[Service]
+Type=simple
+User=personal-bot-gateway
+Group=personal-bot-gateway
+ExecStart=/opt/personal-bot/bin/personal-bot-tls /etc/personal-bot/tls/localhost.crt /etc/personal-bot/tls/localhost.key
+Slice=personal-bot.slice
+Restart=on-failure
+RestartSec=5
+UMask=0077
+MemoryMax=64M
+TasksMax=16
+NoNewPrivileges=yes
+ProtectSystem=strict
+ProtectHome=yes
+PrivateTmp=yes
+RestrictAddressFamilies=AF_INET AF_INET6 AF_UNIX
+RestrictSUIDSGID=yes
+LockPersonality=yes
+ProtectKernelTunables=yes
+ProtectKernelModules=yes
+ProtectControlGroups=yes
+CapabilityBoundingSet=
+
+[Install]
+WantedBy=multi-user.target

@@ -1,0 +1,55 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1440" height="1020" viewBox="0 0 1440 1020" role="img" aria-labelledby="title description">
+  <title id="title">Dream Bot architecture</title>
+  <desc id="description">A resident Go gateway authenticates the owner. A restricted host helper creates at most one Docker runtime with distinct API, Worker, browser and executor identities. Model calls and application data belong to the API. Persistent data survives 300-second idle container deletion.</desc>
+  <defs>
+    <marker id="arrow" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M0 0L10 5L0 10z" fill="#285847"/></marker>
+    <marker id="soft-arrow" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M0 0L10 5L0 10z" fill="#68736b"/></marker>
+    <style>
+      text{font-family:Arial,Helvetica,sans-serif;fill:#222824} .title{font-size:32px;font-weight:700} .subtitle{font-size:16px;fill:#68736b} .label{font-size:12px;letter-spacing:1.5px;fill:#68736b;font-weight:700} .heading{font-size:21px;font-weight:700} .body{font-size:15px} .small{font-size:13px;fill:#68736b} .uid{font-size:13px;fill:#285847;font-weight:700} .box{fill:#fff;stroke:#cbd3ca;stroke-width:1.5} .line{fill:none;stroke:#285847;stroke-width:2;marker-end:url(#arrow)} .persist{fill:none;stroke:#68736b;stroke-width:1.5;stroke-dasharray:6 5;marker-end:url(#soft-arrow)}
+    </style>
+  </defs>
+  <rect width="1440" height="1020" fill="#fafaf7"/>
+  <rect x="40" y="34" width="44" height="44" rx="12" fill="#285847"/><text x="53" y="64" style="fill:#fff;font-size:25px;font-weight:700">D</text>
+  <text x="100" y="61" class="title">Dream Bot</text><text x="310" y="61" class="subtitle">Your conversations. Your server. One disposable runtime.</text>
+  <text x="40" y="126" class="label">OWNER DEVICE</text>
+  <rect x="40" y="158" width="210" height="119" rx="14" class="box"/>
+  <text x="60" y="189" class="heading">Web workspace</text><text x="60" y="217" class="body">Chat + inline browser</text><text x="60" y="242" class="small">HTTPS through SSH tunnel</text>
+  <rect x="290" y="110" width="1110" height="217" rx="19" fill="#edf1e9" stroke="#cbd3ca"/>
+  <text x="314" y="138" class="label">RESIDENT HOST · LINUX AMD64 / SYSTEMD / CGROUP V2</text>
+  <rect x="330" y="158" width="380" height="119" rx="14" class="box"/>
+  <text x="351" y="189" class="heading">TLS + Go gateway</text><text x="351" y="217" class="body">Owner session · CSRF · signed assertions</text><text x="351" y="242" class="small">Lifecycle, scheduling, notifications, control DB</text>
+  <rect x="770" y="158" width="260" height="119" rx="14" class="box"/>
+  <text x="790" y="189" class="heading">Restricted helper</text><text x="790" y="217" class="body">Root · fixed project template</text><text x="790" y="242" class="small">Unix peer identity enforced</text>
+  <rect x="1090" y="158" width="270" height="119" rx="14" class="box"/>
+  <text x="1110" y="189" class="heading">Docker Engine</text><text x="1110" y="217" class="body">Only helper has socket access</text><text x="1110" y="242" class="small">Project-labelled create / delete</text>
+  <path d="M250 210H330" class="line"/><path d="M710 210H770" class="line"/><path d="M1030 210H1090" class="line"/>
+  <rect x="290" y="390" width="1110" height="357" rx="19" fill="#f1f4ee" stroke="#285847" stroke-width="1.6"/>
+  <text x="455" y="365" class="small">Signed short-lived owner assertion</text><path d="M440 277V465" class="line"/>
+  <path d="M1240 277V390" class="line"/><text x="1253" y="359" class="small">create / remove</text>
+  <text x="314" y="422" class="label" style="fill:#285847">AT MOST ONE TEMPORARY CONTAINER · 1 CPU / 2 GiB / 256 PIDS</text>
+  <rect x="330" y="465" width="220" height="200" rx="14" class="box"/>
+  <text x="350" y="497" class="heading">Runtime API</text><text x="350" y="523" class="uid">UID 31001</text><text x="350" y="554" class="body">SQLite + encrypted keys</text><text x="350" y="579" class="body">Approvals + file grants</text><text x="350" y="604" class="body">Model adapters + audit</text><text x="350" y="640" class="small">Sole online data owner</text>
+  <rect x="600" y="465" width="215" height="116" rx="14" class="box"/>
+  <text x="620" y="497" class="heading">Agent Worker</text><text x="620" y="523" class="uid">UID 31002 · LangGraph</text><text x="620" y="555" class="small">UDS HTTP + SO_PEERCRED</text><path d="M600 508H550" class="line"/>
+  <rect x="860" y="465" width="240" height="200" rx="14" class="box"/>
+  <text x="880" y="497" class="heading">Browser broker</text><text x="880" y="523" class="uid">UID 31003</text><text x="880" y="554" class="body">Chromium + Xvfb</text><text x="880" y="579" class="body">Native sandbox enabled</text><text x="880" y="610" class="small">x11vnc only while watched</text><text x="880" y="632" class="small">Retire display after 30s alone</text>
+  <path d="M550 605H860" class="line"/><text x="607" y="628" class="small">API-UID-only broker requests</text>
+  <rect x="1140" y="465" width="220" height="200" rx="14" class="box"/>
+  <text x="1160" y="497" class="heading">Executor broker</text><text x="1160" y="523" class="uid">UID 31004 + fresh child</text><text x="1160" y="554" class="body">Landlock + seccomp</text><text x="1160" y="579" class="body">Granted files + scratch</text><text x="1160" y="610" class="small">No network / exec / fork</text><text x="1160" y="632" class="small">Failed isolation stays closed</text>
+  <path d="M440 665V704H1248V665" class="line"/><text x="612" y="727" class="small">Task-bound tools, bounded execution and durable results</text>
+  <rect x="40" y="475" width="210" height="125" rx="14" class="box"/>
+  <text x="60" y="506" class="heading">Model provider</text><text x="60" y="536" class="body">Configured API / plan</text><text x="60" y="563" class="small">Explicit usage + billing checks</text><path d="M330 535H250" class="line"/>
+  <rect x="40" y="650" width="210" height="97" rx="14" fill="#edf1e9" stroke="#cbd3ca"/>
+  <text x="60" y="678" class="uid">SINGLE OWNER</text><text x="60" y="705" class="small">No Docker socket in runtime</text><text x="60" y="727" class="small">No unrestricted fallback</text>
+  <text x="314" y="818" class="label">PERSISTENT HOST DATA · OUTLIVES CONTAINER DELETION</text>
+  <rect x="330" y="850" width="260" height="105" rx="14" class="box"/>
+  <text x="350" y="881" class="heading">Host control DB</text><text x="350" y="910" class="small">Identity / epoch / scheduled wakes</text><text x="350" y="933" class="small">Gateway-owned state</text>
+  <rect x="640" y="850" width="330" height="105" rx="14" class="box"/>
+  <text x="660" y="881" class="heading">Application DB + files</text><text x="660" y="910" class="small">Conversations / tasks / artifacts / keys</text><text x="660" y="933" class="small">Checkpoints + age-encrypted backups</text>
+  <rect x="1020" y="850" width="330" height="105" rx="14" class="box"/>
+  <text x="1040" y="881" class="heading">Owner browser profile</text><text x="1040" y="910" class="small">Persistent profile / shared owner cookies</text><text x="1040" y="933" class="small">No live DOM or process-memory snapshot</text>
+  <path d="M365 277H270V900H330" class="persist"/>
+  <path d="M472 665V785H805V850" class="persist"/>
+  <path d="M980 665V785H1175V850" class="persist"/>
+  <text x="330" y="992" class="small">300-second safe idle deletion · Passive reads never wake or keep alive · No warm pool · MIT first-party source</text>
+</svg>

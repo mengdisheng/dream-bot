@@ -1,0 +1,16 @@
+{
+  "socket": "/run/personal-bot-host/helper.sock",
+  "docker_socket": "/var/run/docker.sock",
+  "gateway_uid": 31010,
+  "gateway_gid": 31010,
+  "image": "personal-bot@sha256:0000000000000000000000000000000000000000000000000000000000000000",
+  "data_root": "/var/lib/personal-bot",
+  "bridge_dir": "/run/personal-bot-bridge",
+  "public_key_path": "/var/lib/personal-bot/control/assertion.pub",
+  "runtime_port": 8091,
+  "network": "personal-bot",
+  "cgroup_parent": "personal-bot.slice",
+  "memory_bytes": 2147483648,
+  "nano_cpus": 1000000000,
+  "pids_limit": 256
+}

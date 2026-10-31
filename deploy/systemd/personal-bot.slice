@@ -1,0 +1,12 @@
+[Unit]
+Description=Personal Bot resource budget
+
+[Slice]
+CPUAccounting=yes
+CPUQuota=150%
+MemoryAccounting=yes
+MemoryHigh=2200M
+MemoryMax=2432M
+TasksMax=384
+IOAccounting=yes
+IOWeight=50

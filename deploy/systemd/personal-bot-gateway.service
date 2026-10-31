@@ -1,0 +1,38 @@
+[Unit]
+Description=Personal Bot owner gateway
+Requires=personal-bot-helper.service
+Wants=personal-bot-tls.service
+After=personal-bot-helper.service
+StartLimitIntervalSec=120
+StartLimitBurst=3
+
+[Service]
+Type=simple
+User=personal-bot-gateway
+Group=personal-bot-gateway
+SupplementaryGroups=personal-bot-ipc
+ExecStart=/opt/personal-bot/bin/personal-bot-gateway -config /etc/personal-bot/host.json
+Slice=personal-bot.slice
+Restart=on-failure
+RestartSec=5
+UMask=0077
+MemoryMax=256M
+TasksMax=32
+RuntimeDirectory=personal-bot-gateway personal-bot-bridge
+RuntimeDirectoryPreserve=yes
+RuntimeDirectoryMode=0700
+NoNewPrivileges=yes
+ProtectSystem=strict
+ProtectHome=yes
+PrivateTmp=yes
+ReadWritePaths=/var/lib/personal-bot/control /var/lib/personal-bot/acceptance/control /run/personal-bot-gateway /run/personal-bot-bridge
+RestrictAddressFamilies=AF_UNIX AF_INET AF_INET6
+RestrictSUIDSGID=yes
+LockPersonality=yes
+ProtectKernelTunables=yes
+ProtectKernelModules=yes
+ProtectControlGroups=yes
+CapabilityBoundingSet=
+
+[Install]
+WantedBy=multi-user.target

@@ -1,0 +1,33 @@
+[Unit]
+Description=Personal Bot restricted container helper
+Requires=docker.service
+After=docker.service
+StartLimitIntervalSec=120
+StartLimitBurst=3
+
+[Service]
+Type=simple
+ExecStart=/opt/personal-bot/bin/personal-bot-helper -config /etc/personal-bot/helper.json
+Slice=personal-bot.slice
+Restart=on-failure
+RestartSec=5
+UMask=0027
+MemoryMax=512M
+TasksMax=32
+NoNewPrivileges=yes
+ProtectSystem=strict
+ProtectHome=yes
+PrivateTmp=yes
+ReadWritePaths=/var/lib/personal-bot /run/personal-bot-host
+RuntimeDirectory=personal-bot-host
+RuntimeDirectoryMode=0750
+RestrictAddressFamilies=AF_UNIX
+RestrictSUIDSGID=yes
+LockPersonality=yes
+ProtectKernelTunables=yes
+ProtectKernelModules=yes
+ProtectControlGroups=yes
+CapabilityBoundingSet=CAP_CHOWN CAP_DAC_OVERRIDE CAP_FOWNER
+
+[Install]
+WantedBy=multi-user.target

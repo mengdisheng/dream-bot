@@ -1,0 +1,3 @@
+#!/bin/sh
+cd /opt/personal-bot/runtime
+exec setpriv --reuid=31001 --regid=31000 --clear-groups --bounding-set=-all --inh-caps=-all --ambient-caps=-all python -m personal_bot.server

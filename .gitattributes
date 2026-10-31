@@ -1,0 +1,5 @@
+* text=auto eol=lf
+*.svg text eol=lf
+web/package-lock.json linguist-generated=true
+host/go.sum linguist-generated=true
+docs/DEPENDENCIES.json linguist-generated=true

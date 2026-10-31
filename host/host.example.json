@@ -1,0 +1,20 @@
+{
+  "listen": "127.0.0.1:8090",
+  "origin": "https://bot.example.invalid",
+  "state_dir": "/var/lib/personal-bot/control",
+  "static_dir": "/opt/personal-bot/web",
+  "helper_socket": "/run/personal-bot-host/helper.sock",
+  "admin_socket": "/run/personal-bot-gateway/admin.sock",
+  "gateway_uid": 31010,
+  "ipc_gid": 31000,
+  "host_reserve_bytes": 805306368,
+  "project_peak_bytes": 2550136832,
+  "project_slice": "personal-bot.slice",
+  "bridge_socket": "/run/personal-bot-bridge/bridge.sock",
+  "runtime_url": "http://127.0.0.1:8091",
+  "api_peer_uid": 31001,
+  "idle_seconds": 300,
+  "startup_seconds": 60,
+  "backup_dir": "/var/lib/personal-bot/backups",
+  "push_contact": "mailto:owner@example.invalid"
+}
